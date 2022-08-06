@@ -1,4 +1,4 @@
-# vuebucks
+# Vuebucks
 
 ## Project setup
 ```
