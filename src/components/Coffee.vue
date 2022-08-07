@@ -5,7 +5,8 @@
     :class="actualIndex == i ? 'actual':''">
         <div class="coffees__img">
             <img :src="require(`../assets/${coffee.img}`)" alt="Coffee :)"
-            :style="i == 1 ? 'margin-bottom:-35px; transform:scale(0.85)':''">
+            :style="i == 1? 'margin-bottom:-35px; transform:scale(0.85)':''"
+            :class="i == 3 ? 'bigger':''">
         </div>
         <h1>{{coffee.name}}</h1>
         <div v-if="actualIndex != i">
@@ -62,8 +63,14 @@ export default {
                     {trans: 'Trans fat 0.2g'}
                 ],img:'coffee3.png'},
 
+                {name:'Vanilla & Chocolate', calories:[
+                    {fat: 'Total fat 43g'},
+                    {satured: 'Satured fat 17g'},
+                    {trans: 'Trans fat 0g'}
+                ],img:'coffee4.png'}
+
             ],
-            actualIndex:0
+            actualIndex:null
         }
     },
     methods:{
@@ -77,12 +84,16 @@ export default {
 <style lang="scss">
 @import '@/assets/_shared.scss';
 
+.bigger{
+    transform: scale(1.3);
+}
+
 .coffees{
     display: grid;
     justify-content: space-evenly;
     grid-template-columns: repeat(auto-fit, 350px);
     justify-items: center;
-    margin: 100px 0;
+    margin: 30px 0 80px 0;
     padding: 20px;
     gap: 10px;
 
@@ -119,6 +130,7 @@ export default {
         display: grid;
         padding:50px;
         width: 100%;
+        margin-top:100px;
         grid-template-rows:200px 80px;
         background-color: $card-bgcolor;
         color: $card-fontcolor;
@@ -148,6 +160,7 @@ export default {
         background-color: #448f79;
         transform: scale(1.2);
         color: #fff;
+        z-index: 4;
         box-shadow: 25px 10px 51px 1px rgba(0,0,0,0.20);
         cursor: default;
     }
