@@ -21,6 +21,7 @@ export default {
 *{
   box-sizing: border-box;
   font-family: 'Archivo', sans-serif;
+  user-select: none;
 }
 
 body{

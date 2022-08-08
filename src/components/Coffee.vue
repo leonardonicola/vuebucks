@@ -1,5 +1,6 @@
 <template>
 <div class="coffees" @click.self="actualIndex = null">
+    
     <fa class="coffees--left" icon="arrow-left"
     @click="prev"/>
     <fa class="coffees--right" icon="arrow-right"
@@ -74,9 +75,9 @@ export default {
                 ],img:'coffee2.png',show:true},
 
                 {name:'Green Coffee', calories:[
-                    {fat: 'Total fat 23g'},
-                    {satured: 'Satured fat 15g'},
-                    {trans: 'Trans fat 0.2g'}
+                    {fat: 'Total fat 3g'},
+                    {satured: 'Satured fat 0g'},
+                    {trans: 'Trans fat 0g'}
                 ],img:'coffee3.png',show:true},
 
                 {name:'Vanilla & Chocolate', calories:[
@@ -85,11 +86,11 @@ export default {
                     {trans: 'Trans fat 0g'}
                 ],img:'coffee4.png',show:false},
 
-                {name:'Frapuccino', calories:[
-                    {fat: 'Total fat 13g'},
-                    {satured: 'Satured fat 9g'},
+                {name:'Banana Shake', calories:[
+                    {fat: 'Total fat 10g'},
+                    {satured: 'Satured fat 4g'},
                     {trans: 'Trans fat 0g'}
-                ],img:'coffee1.png',show:false},
+                ],img:'coffee5.png',show:false},
 
                 {name:'Midnight Coffee', calories:[
                     {fat: 'Total fat 23g'},
@@ -152,6 +153,12 @@ export default {
         font-size: 2em;
         background-color: #000;
         border-radius: 50% 12%;
+        transition: all .3s ease;
+
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.651);
+            font-size: 2.3em;
+        }
     }
 
     &--right{
