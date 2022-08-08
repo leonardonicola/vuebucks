@@ -1,7 +1,7 @@
 <template>
-<div class="coffees" @click.self="actualIndex = null">
+<div class="coffees">
 
-    <VueSlickCarousel class="slider" v-bind="settings" @click.self="actualIndex = null">
+    <VueSlickCarousel class="slider" v-bind="settings">
         
         <div v-for="(coffee, i) in productList" :key="i"
         class="coffees__card"
@@ -94,37 +94,37 @@ data(){
                 {fat: 'Total fat 13g'},
                 {satured: 'Satured fat 9g'},
                 {trans: 'Trans fat 0g'}
-            ],img:'coffee1.png', show:true},
+            ],img:'coffee1.png'},
 
             {name:'Midnight Coffee', calories:[
                 {fat: 'Total fat 23g'},
                 {satured: 'Satured fat 13g'},
                 {trans: 'Trans fat 0.5g'}
-            ],img:'coffee2.png',show:true},
+            ],img:'coffee2.png'},
 
             {name:'Green Coffee', calories:[
                 {fat: 'Total fat 3g'},
                 {satured: 'Satured fat 0g'},
                 {trans: 'Trans fat 0g'}
-            ],img:'coffee3.png',show:true},
+            ],img:'coffee3.png'},
 
             {name:'Vanilla & Chocolate', calories:[
                 {fat: 'Total fat 43g'},
                 {satured: 'Satured fat 17g'},
                 {trans: 'Trans fat 0g'}
-            ],img:'coffee4.png',show:false},
+            ],img:'coffee4.png'},
 
             {name:'Banana Shake', calories:[
                 {fat: 'Total fat 10g'},
                 {satured: 'Satured fat 4g'},
                 {trans: 'Trans fat 0g'}
-            ],img:'coffee5.png',show:false},
+            ],img:'coffee5.png'},
 
             {name:'Midnight Coffee', calories:[
                 {fat: 'Total fat 23g'},
                 {satured: 'Satured fat 13g'},
                 {trans: 'Trans fat 0.5g'}
-            ],img:'coffee2.png',show:false},
+            ],img:'coffee2.png'},
 
         ],
         actualIndex: null
@@ -133,29 +133,6 @@ data(){
     methods:{
         handleToggle(ev){
             this.actualIndex = ev
-        },
-        next(){
-            this.productList.forEach(elem =>{
-                if(elem.show == false){
-                    elem.show = true
-                }else{
-                    elem.show = false
-                }
-            })
-        },
-        prev(){
-            this.productList.forEach(elem =>{
-                if(elem.show == true){
-                    elem.show = false
-                }else{
-                    elem.show = true
-                }
-            })
-        }
-    },
-    computed:{
-        showed(){
-            return this.productList.filter(elem => elem.show == true)
         }
     }
 }
@@ -183,78 +160,80 @@ data(){
     .slick-prev{
         left: -45px;
     }
-}
 
-.coffees{
+    .coffees{
     position: relative;
     width: 100%;
     padding: 100px 0;
 
-    &__card{
-        display: grid !important;
-        width: $card-width !important;
-        padding:50px;
-        margin:100px auto;
-        grid-template-rows:200px 80px;
-        background-color: $card-bgcolor;
-        color: $card-fontcolor;
-        border-radius: 45px;
-        transition: all 1s ease;
-        cursor: pointer;
+        &__card{
+            display: grid !important;
+            width: $card-width !important;
+            padding:50px;
+            margin:100px auto;
+            grid-template-rows:200px 80px;
+            background-color: $card-bgcolor;
+            color: $card-fontcolor;
+            border-radius: 45px;
+            transition: all 1s ease;
+            cursor: pointer;
 
-    }
-
-    &__milk, &__size{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        select{
-        color: #fff;
-        border: 0;
-        border-bottom: 1px solid #fff;
-        background-color: transparent;
-        padding: 5px;
-        height: fit-content;
-        cursor: pointer;
-
-        &:focus{
-            outline: 0;
         }
 
-        option{
-            font-size: 1.5em;
-            color: #000;
-        }
-        }
-    }
+        &__milk, &__size{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-    &__img{
-        display: flex;
-        width: 100%;
-        padding: 10px;
-        img{
-            margin-top:-170px ;
+            select{
+            color: #fff;
+            border: 0;
+            border-bottom: 1px solid #fff;
+            background-color: transparent;
+            padding: 5px;
+            height: fit-content;
+            cursor: pointer;
+
+                &:focus{
+                    outline: 0;
+                }
+
+                option{
+                    font-size: 1.5em;
+                    color: #000;
+                }
+            }
+        }
+
+        &__img{
+            display: flex;
             width: 100%;
-            object-fit: cover;
+            padding: 10px;
+            img{
+                margin-top:-170px ;
+                width: 100%;
+                object-fit: cover;
+            }
         }
+
+        &__selects{
+            width: 100%;
+        }
+
     }
 
-    &__selects{
-        width: 100%;
+    .actual{
+        background-color: #448f79;
+        color: #fff;
+        z-index: 4;
+        cursor: default;
     }
 
+    .bigger{
+        transform: scale(1.3);
+    }
 }
 
-.actual{
-    background-color: #448f79;
-    color: #fff;
-    z-index: 4;
-    cursor: default;
-}
 
-.bigger{
-    transform: scale(1.3);
-}
 
 </style>

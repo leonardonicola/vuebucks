@@ -10,9 +10,6 @@
         <input type="text" placeholder="SEARCH"/>
         <fa icon="search"/>
     </div>
-    <div class="header__third">
-        <fa icon='shopping-bag'/>
-    </div>
   </header>
 </template>
 
@@ -26,11 +23,11 @@ export default {
 
 .header{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 80px;
     padding: 50px 110px;
 
-    &__first, &__second, &__third{
+    &__first, &__second{
         display: flex;
         align-items: center;
         gap: 50px;
@@ -56,14 +53,7 @@ export default {
             height: 100px;
         }
     }
-
-    &__third{
-        justify-content: flex-end;
-        svg{
-            font-size:2em;
-            cursor: pointer;
-        }
-    }
+    
 
     &__second{
         justify-content: flex-end;
@@ -86,6 +76,21 @@ export default {
             position: absolute;
         }
     }
+
 }
+
+@media screen and (max-width:950px) {
+    .header{
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+        justify-items: center;
+
+        &__second{
+        display: none;
+        }
+    }
+}
+
+
 
 </style>
