@@ -61,6 +61,7 @@ export default {
         justify-content: flex-end;
         svg{
             font-size:2em;
+            cursor: pointer;
         }
     }
 
