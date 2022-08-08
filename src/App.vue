@@ -21,11 +21,16 @@ export default {
 *{
   box-sizing: border-box;
   font-family: 'Archivo', sans-serif;
+  user-select: none;
+}
+
+body{
+  overflow-x:hidden;
 }
 
 body,html{
   position: relative;
-  margin:0
+  margin:0;
 }
 
 .circle{

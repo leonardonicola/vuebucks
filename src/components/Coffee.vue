@@ -1,38 +1,56 @@
 <template>
 <div class="coffees" @click.self="actualIndex = null">
-    <div v-for="(coffee, i) in productList" :key="i" class="coffees__card"
-    @click="handleToggle(i)"
-    :class="actualIndex == i ? 'actual':''">
-        <div class="coffees__img">
-            <img :src="require(`../assets/${coffee.img}`)" alt="Coffee :)"
-            :style="i == 1 ? 'margin-bottom:-35px; transform:scale(0.85)':''">
-        </div>
-        <h1>{{coffee.name}}</h1>
-        <div v-if="actualIndex != i">
-            <span v-for="details in coffee.calories" :key="details.fat">
-                <h4>{{details.fat}}</h4>
-                <p>{{details.satured}}</p>
-                <p>{{details.trans}}</p>
-            </span>
-        </div>
-        <div v-show="actualIndex == i" class="coffees__selects">
-            <div class="coffees__size">
-                <h2>Size</h2>
-                <select id="cars" name="cars">
-                    <option value="demi">Demi</option>
-                    <option value="short">Short</option>
-                    <option value="Tall">Tall</option>
-                    <option value="Grande">Grande</option>
-                    <option value="Venti">Venti</option>
-                </select>
+    
+    <fa class="coffees--left" icon="arrow-left"
+    @click="prev"/>
+    <fa class="coffees--right" icon="arrow-right"
+    @click="next"/>
+
+    <div class="coffees__slider" @click.self="actualIndex = null">
+        
+        <div v-for="(coffee, i) in showed" :key="i"
+        class="coffees__card"
+        ref="card"
+        @click="handleToggle(i)"
+        :class="actualIndex == i ? 'actual':''">
+
+            <div class="coffees__img">
+                <img :src="require(`../assets/${coffee.img}`)" alt="Coffee :)"
+                :style="coffee.img == 'coffee2.png'? 'margin-bottom:-25px; transform:scale(0.85)':''"
+                :class="coffee.img == 'coffee4.png'? 'bigger':''">
             </div>
-            <div class="coffees__milk">
-                <h2>Milk</h2>
-                <select id="cars" name="cars">
-                    <option value="cremoso">Cremoso</option>
-                    <option value="aveia">Aveia</option>
-                    <option value="vegetal">Vegetal</option>
-                </select>
+
+            <h1>{{coffee.name}}</h1>
+
+            <div v-if="actualIndex != i">
+                <span v-for="details in coffee.calories" :key="details.fat">
+                    <h4>{{details.fat}}</h4>
+                    <p>{{details.satured}}</p>
+                    <p>{{details.trans}}</p>
+                </span>
+            </div>
+
+            <div v-show="actualIndex == i" class="coffees__selects">
+
+                <div class="coffees__size">
+                    <h2>Size</h2>
+                    <select id="cars" name="cars">
+                        <option value="demi">Demi</option>
+                        <option value="short">Short</option>
+                        <option value="Tall">Tall</option>
+                        <option value="Grande">Grande</option>
+                        <option value="Venti">Venti</option>
+                    </select>
+                </div>
+
+                <div class="coffees__milk">
+                    <h2>Milk</h2>
+                    <select id="cars" name="cars">
+                        <option value="cremoso">Cremoso</option>
+                        <option value="aveia">Aveia</option>
+                        <option value="vegetal">Vegetal</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -48,27 +66,68 @@ export default {
                     {fat: 'Total fat 13g'},
                     {satured: 'Satured fat 9g'},
                     {trans: 'Trans fat 0g'}
-                ],img:'coffee1.png'},
+                ],img:'coffee1.png', show:true},
 
                 {name:'Midnight Coffee', calories:[
                     {fat: 'Total fat 23g'},
                     {satured: 'Satured fat 13g'},
                     {trans: 'Trans fat 0.5g'}
-                ],img:'coffee2.png'},
+                ],img:'coffee2.png',show:true},
 
                 {name:'Green Coffee', calories:[
+                    {fat: 'Total fat 3g'},
+                    {satured: 'Satured fat 0g'},
+                    {trans: 'Trans fat 0g'}
+                ],img:'coffee3.png',show:true},
+
+                {name:'Vanilla & Chocolate', calories:[
+                    {fat: 'Total fat 43g'},
+                    {satured: 'Satured fat 17g'},
+                    {trans: 'Trans fat 0g'}
+                ],img:'coffee4.png',show:false},
+
+                {name:'Banana Shake', calories:[
+                    {fat: 'Total fat 10g'},
+                    {satured: 'Satured fat 4g'},
+                    {trans: 'Trans fat 0g'}
+                ],img:'coffee5.png',show:false},
+
+                {name:'Midnight Coffee', calories:[
                     {fat: 'Total fat 23g'},
-                    {satured: 'Satured fat 15g'},
-                    {trans: 'Trans fat 0.2g'}
-                ],img:'coffee3.png'},
+                    {satured: 'Satured fat 13g'},
+                    {trans: 'Trans fat 0.5g'}
+                ],img:'coffee2.png',show:false},
 
             ],
-            actualIndex:0
+            actualIndex: null
         }
     },
     methods:{
         handleToggle(ev){
             this.actualIndex = ev
+        },
+        next(){
+            this.productList.forEach(elem =>{
+                if(elem.show == false){
+                    elem.show = true
+                }else{
+                    elem.show = false
+                }
+            })
+        },
+        prev(){
+            this.productList.forEach(elem =>{
+                if(elem.show == true){
+                    elem.show = false
+                }else{
+                    elem.show = true
+                }
+            })
+        }
+    },
+    computed:{
+        showed(){
+            return this.productList.filter(elem => elem.show == true)
         }
     }
 }
@@ -77,48 +136,54 @@ export default {
 <style lang="scss">
 @import '@/assets/_shared.scss';
 
+
 .coffees{
-    display: grid;
-    justify-content: space-evenly;
-    grid-template-columns: repeat(auto-fit, 350px);
-    justify-items: center;
-    margin: 100px 0;
-    padding: 20px;
-    gap: 10px;
+    position: relative;
+    width: 100%;
+    padding: 100px 0;
 
-    &__milk, &__size{
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
+    &--left, &--right{
+        position: absolute;
+        padding: 15px;
+        top: 50%;
+        bottom: 50%;
+        z-index: 6;
+        color: #fff;
+        cursor: pointer;
+        font-size: 2em;
+        background-color: #000;
+        border-radius: 50% 12%;
+        transition: all .3s ease;
 
-         select{
-            color: #fff;
-            border: 0;
-            border-bottom: 1px solid #fff;
-            background-color: transparent;
-            padding: 5px;
-            height: fit-content;
-            cursor: pointer;
-
-            &:focus{
-                outline: 0;
-            }
-
-            option{
-                font-size: 1.5em;
-                color: #000;
-            }
-         }
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.651);
+            font-size: 2.3em;
+        }
     }
 
-    &__selects{
+    &--right{
+        right: 15px;
+    }
+
+    &--left{
+        left: 15px;
+    }
+
+    &__slider{
+        display: flex;
+        margin: 0 auto;
         width: 100%;
+        gap: 80px;
+        transition: transform 2s ease;
+        justify-content: center;
+
     }
 
     &__card{
         display: grid;
         padding:50px;
-        width: 100%;
+        width: $card-width;
+        margin-top:100px;
         grid-template-rows:200px 80px;
         background-color: $card-bgcolor;
         color: $card-fontcolor;
@@ -129,6 +194,31 @@ export default {
 
         p{
             margin:5px
+        }
+    }
+
+    &__milk, &__size{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        select{
+        color: #fff;
+        border: 0;
+        border-bottom: 1px solid #fff;
+        background-color: transparent;
+        padding: 5px;
+        height: fit-content;
+        cursor: pointer;
+
+        &:focus{
+            outline: 0;
+        }
+
+        option{
+            font-size: 1.5em;
+            color: #000;
+        }
         }
     }
 
@@ -144,13 +234,23 @@ export default {
         }
     }
 
-    .actual{
-        background-color: #448f79;
-        transform: scale(1.2);
-        color: #fff;
-        box-shadow: 25px 10px 51px 1px rgba(0,0,0,0.20);
-        cursor: default;
+    &__selects{
+        width: 100%;
     }
 
 }
+
+.actual{
+        background-color: #448f79;
+        transform: scale(1.2);
+        color: #fff;
+        z-index: 4;
+        box-shadow: 25px 10px 51px 1px rgba(0,0,0,0.20);
+        cursor: default;
+}
+
+.bigger{
+    transform: scale(1.3);
+}
+
 </style>

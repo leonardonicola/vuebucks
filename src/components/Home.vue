@@ -15,7 +15,7 @@ export default {
 <style lang="scss">
 .home{
     text-align: end;
-    padding: 30px;
+    padding: 30px 100px;
     padding-top: 0;
 
     h1{

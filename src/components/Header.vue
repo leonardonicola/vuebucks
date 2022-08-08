@@ -11,7 +11,7 @@
         <fa icon="search"/>
     </div>
     <div class="header__third">
-        <h4>MY BASKET</h4>
+        <fa icon='shopping-bag'/>
     </div>
   </header>
 </template>
@@ -28,7 +28,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 80px;
-    padding: 50px;
+    padding: 50px 110px;
 
     &__first, &__second, &__third{
         display: flex;
@@ -57,7 +57,14 @@ export default {
         }
     }
 
-    &__second, &__third{
+    &__third{
+        justify-content: flex-end;
+        svg{
+            font-size:2em;
+        }
+    }
+
+    &__second{
         justify-content: flex-end;
 
         input{
