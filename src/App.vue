@@ -23,9 +23,13 @@ export default {
   font-family: 'Archivo', sans-serif;
 }
 
+body{
+  overflow-x:hidden;
+}
+
 body,html{
   position: relative;
-  margin:0
+  margin:0;
 }
 
 .circle{
