@@ -2,9 +2,11 @@
   <header class="header">
     <div class="header__first">
         <img src="../assets/vuebucks logo.png" alt=""/>
-        <p>COFFEE</p>
-        <p>TEA</p>
-        <p>MENU</p>
+        <div class="header__first--mobile">
+            <p>COFFEE</p>
+            <p>TEA</p>
+            <p>MENU</p>
+        </div>
     </div>
     <div class="header__second">
         <input type="text" placeholder="SEARCH"/>
@@ -22,15 +24,15 @@ export default {
 <style lang="scss">
 
 .header{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 80px;
+    display: flex;
+    justify-content: space-between;
     padding: 50px 110px;
 
     &__first, &__second{
         display: flex;
         align-items: center;
         gap: 50px;
+        width: 100%;
         
         p{
             cursor: pointer;
@@ -51,6 +53,10 @@ export default {
             cursor: pointer;
             width: 100px;
             height: 100px;
+        }
+
+        &--mobile{
+            display: flex;
         }
     }
     
@@ -81,12 +87,19 @@ export default {
 
 @media screen and (max-width:950px) {
     .header{
-        grid-template-columns: 1fr;
-        padding: 50px 20px;
         justify-items: center;
 
         &__second{
         display: none;
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+    .header__first{
+        justify-content: center;
+        &--mobile{
+            display: none;
         }
     }
 }

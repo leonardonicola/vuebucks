@@ -5,7 +5,7 @@
         
         <div v-for="(coffee, i) in productList" :key="i"
         class="coffees__card"
-        ref="card"
+        id="card"
         @click="handleToggle(i)"
         :class="actualIndex == i ? 'actual':''">
 
@@ -221,6 +221,8 @@ data(){
             width: 100%;
         }
 
+       
+
     }
 
     .actual{
@@ -233,6 +235,20 @@ data(){
     .bigger{
         transform: scale(1.3);
     }
+
+    
+}
+
+ @media screen and (max-width:550px) {
+    #card{
+        width: 100% !important;
+        padding: 15px !important;
+
+        img{
+        margin-top: -27px;
+        }
+    }
+    
 }
 
 
