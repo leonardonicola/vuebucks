@@ -29,7 +29,7 @@
 
                 <div class="coffees__size">
                     <h2>Size</h2>
-                    <select id="cars" name="cars">
+                    <select name="size">
                         <option value="demi">Demi</option>
                         <option value="short">Short</option>
                         <option value="Tall">Tall</option>
@@ -40,7 +40,7 @@
 
                 <div class="coffees__milk">
                     <h2>Milk</h2>
-                    <select id="cars" name="cars">
+                    <select name="milk">
                         <option value="cremoso">Cremoso</option>
                         <option value="aveia">Aveia</option>
                         <option value="vegetal">Vegetal</option>
@@ -199,7 +199,6 @@ data(){
                 }
 
                 option{
-                    font-size: 1.5em;
                     color: #000;
                 }
             }
@@ -233,7 +232,6 @@ data(){
         transform: scale(1.3);
     }
 }
-
 
 
 </style>
