@@ -10,7 +10,7 @@
         :class="actualIndex == i ? 'actual':''">
 
             <div class="coffees__img">
-                <img :src="require(`../assets/${coffee.img}`)" alt="Coffee :)"
+                <img :src="require(`../assets/${coffee.img}`)" loading="lazy" alt="Coffee :)"
                 :style="coffee.img == 'coffee2.png'? 'margin-bottom:-25px; transform:scale(0.85)':''"
                 :class="coffee.img == 'coffee4.png'? 'bigger':''">
             </div>
@@ -212,6 +212,8 @@ data(){
                 margin-top:-170px ;
                 width: 100%;
                 object-fit: cover;
+                user-select: none;
+                pointer-events: none;
             }
         }
 
