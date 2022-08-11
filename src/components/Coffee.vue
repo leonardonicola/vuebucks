@@ -17,7 +17,7 @@
 
             <h1>{{coffee.name}}</h1>
 
-            <div v-if="actualIndex != i">
+            <div v-show="actualIndex != i">
                 <span v-for="details in coffee.calories" :key="details.fat">
                     <h4>{{details.fat}}</h4>
                     <p>{{details.satured}}</p>
@@ -245,10 +245,18 @@ data(){
         padding: 15px !important;
 
         img{
-        margin-top: -27px;
+        margin-top: -123px;
         }
     }
     
+}
+
+@media screen and (max-width:450px) {
+    #card{
+        img{
+            margin-top: -15px;
+        }
+    }
 }
 
 
